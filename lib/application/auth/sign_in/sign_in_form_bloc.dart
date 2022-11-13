@@ -4,18 +4,18 @@ import 'package:clean_architecture/domain/auth/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../infrastructure/auth/firebase_auth_facade.dart';
 import 'sign_in_form_event.dart';
 import 'sign_in_form_state.dart';
 
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
-  SignInFormBloc() : super(SignInFormState.initial());
+  final IAuthFacade authFacade;
+
+  SignInFormBloc(this.authFacade) : super(SignInFormState.initial());
 
   SignInFormState get initialState => SignInFormState.initial();
 
   @override
   Stream<SignInFormState> mapEventToState(SignInFormEvent event) async* {
-    final IAuthFacade authFacade = FirebaseAuthFacade();
     yield* event.map(emailChanged: (e) async* {
       yield state.copyWith(
         emailAddress: EmailAddress(e.emailStr),
