@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'errors.dart';
 import 'failures.dart';
 
 abstract class ValueObjects<T> {
@@ -7,6 +8,10 @@ abstract class ValueObjects<T> {
   const ValueObjects();
 
   bool get isValid => value.isRight();
+
+  T getOrCrash() {
+    return value.fold((l) => throw UnexpectedValueError(l), (r) => r);
+  }
 
   @override
   String toString() {
