@@ -69,6 +69,20 @@ class SignInScreen extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                         )),
                     obscureText: true,
+                    autocorrect: false,
+                    onChanged: (value) => context
+                        .read<SignInFormBloc>()
+                        .add(SignInFormEvent.passwordChanged(value)),
+                    validator: (_) => context
+                        .read<SignInFormBloc>()
+                        .state
+                        .password
+                        .value
+                        .fold(
+                            (f) => f.maybeMap(
+                            orElse: () => null,
+                            shortPassword: (_) => "Short Password"),
+                            (_) => null),
                   ),
                   const SizedBox(
                     height: 10,
