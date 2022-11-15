@@ -1,4 +1,5 @@
 import 'package:clean_architecture/application/auth/sign_in/sign_in_form_bloc.dart';
+import 'package:clean_architecture/application/auth/sign_in/sign_in_form_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,6 +19,9 @@ class SignInScreen extends StatelessWidget {
           },
           builder: (context, state) {
             return Form(
+              autovalidateMode: state.showErrorMessage
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
               child: ListView(
                 children: [
                   const SizedBox(
@@ -39,6 +43,20 @@ class SignInScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(16)),
                       ),
                     ),
+                    autocorrect: false,
+                    onChanged: (value) => context
+                        .read<SignInFormBloc>()
+                        .add(SignInFormEvent.emailChanged(value)),
+                    validator: (_) => context
+                        .read<SignInFormBloc>()
+                        .state
+                        .emailAddress
+                        .value
+                        .fold(
+                            (f) => f.maybeMap(
+                                orElse: () => null,
+                                invalidEmail: (_) => "Invalid Email"),
+                            (_) => null),
                   ),
                   const SizedBox(
                     height: 10,
@@ -60,7 +78,10 @@ class SignInScreen extends StatelessWidget {
                     child: const Text("Login"),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<SignInFormBloc>().add(const SignInFormEvent
+                          .registerWithEmailAndPasswordPressed());
+                    },
                     child: const Text("Register"),
                   ),
                   TextButton(
