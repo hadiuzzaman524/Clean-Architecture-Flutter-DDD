@@ -80,8 +80,8 @@ class SignInScreen extends StatelessWidget {
                         .value
                         .fold(
                             (f) => f.maybeMap(
-                            orElse: () => null,
-                            shortPassword: (_) => "Short Password"),
+                                orElse: () => null,
+                                shortPassword: (_) => "Short Password"),
                             (_) => null),
                   ),
                   const SizedBox(
@@ -91,13 +91,16 @@ class SignInScreen extends StatelessWidget {
                     onPressed: () {},
                     child: const Text("Login"),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<SignInFormBloc>().add(const SignInFormEvent
-                          .registerWithEmailAndPasswordPressed());
-                    },
-                    child: const Text("Register"),
-                  ),
+                  state.isSubmitting
+                      ? const Center(child: CircularProgressIndicator())
+                      : ElevatedButton(
+                          onPressed: () {
+                            context.read<SignInFormBloc>().add(
+                                const SignInFormEvent
+                                    .registerWithEmailAndPasswordPressed());
+                          },
+                          child: const Text("Register"),
+                        ),
                   TextButton(
                     onPressed: () {},
                     child: const Text("Log In With Google"),
