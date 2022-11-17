@@ -26,3 +26,17 @@ abstract class ValueObjects<T> {
   @override
   int get hashCode => 0;
 }
+
+class UniqueId extends ValueObjects<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+  const UniqueId._(this.value);
+
+  factory UniqueId() {
+    return UniqueId._(right("hello"));
+  }
+
+  factory UniqueId.fromUniqueString(String uniqueId) {
+    return UniqueId._(right(uniqueId));
+  }
+}

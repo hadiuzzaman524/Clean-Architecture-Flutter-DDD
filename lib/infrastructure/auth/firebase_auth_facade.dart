@@ -1,3 +1,4 @@
+import 'package:clean_architecture/domain/core/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +8,7 @@ import 'package:injectable/injectable.dart';
 import '../../domain/auth/auth_failure.dart';
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/value_objects.dart';
-
+import '../../domain/auth/user.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
@@ -60,5 +61,19 @@ class FirebaseAuthFacade implements IAuthFacade {
     } catch (e) {
       return left(const AuthFailure.cancelledByUser());
     }
+  }
+
+  @override
+  Future<Option<AppUser>> getSignedInUser() async {
+    final uid = _firebaseAuth.currentUser!.uid;
+    return some(AppUser(id: UniqueId.fromUniqueString(uid)));
+  }
+
+  @override
+  Future<void> signOut() {
+    return Future.wait([
+      _firebaseAuth.signOut(),
+      _googleSignIn.signOut(),
+    ]);
   }
 }
