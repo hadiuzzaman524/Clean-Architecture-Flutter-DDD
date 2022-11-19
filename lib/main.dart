@@ -1,5 +1,4 @@
-import 'package:clean_architecture/application/auth/auth_bloc.dart';
-import 'package:clean_architecture/application/auth/auth_event.dart';
+import 'package:clean_architecture/application/auth/m_auth_cubit.dart';
 import 'package:clean_architecture/application/auth/sign_in/sign_in_form_bloc.dart';
 import 'package:clean_architecture/presentation/auth/sign_in.dart';
 import 'package:clean_architecture/presentation/splash/splash_screen.dart';
@@ -28,14 +27,13 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => getIt<SignInFormBloc>(),
+            create: (context) => getIt<MAuthCubit>()..checkAuthentication(),
+
           ),
           BlocProvider(
-            create: (context) => getIt<AuthBloc>()
-              ..add(
-                const AuthEvent.authCheckedRequest(),
-              ),
+            create: (context) => getIt<SignInFormBloc>(),
           ),
+
         ],
         child: const SplashScreen(),
       ),

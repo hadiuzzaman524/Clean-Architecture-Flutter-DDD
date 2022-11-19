@@ -10,8 +10,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/auth_bloc.dart' as _i8;
-import 'application/auth/sign_in/sign_in_form_bloc.dart' as _i7;
+import 'application/auth/m_auth_cubit.dart' as _i7;
+import 'application/auth/sign_in/sign_in_form_bloc.dart' as _i8;
 import 'domain/auth/i_auth_facade.dart' as _i5;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i6;
 import 'infrastructure/core/firebase_injectable_module.dart'
@@ -38,9 +38,9 @@ _i1.GetIt $initGetIt(
         get<_i3.FirebaseAuth>(),
         get<_i4.GoogleSignIn>(),
       ));
-  gh.factory<_i7.SignInFormBloc>(
-      () => _i7.SignInFormBloc(get<_i5.IAuthFacade>()));
-  gh.factory<_i8.AuthBloc>(() => _i8.AuthBloc(get<_i5.IAuthFacade>()));
+  gh.factory<_i7.MAuthCubit>(() => _i7.MAuthCubit(get<_i5.IAuthFacade>()));
+  gh.factory<_i8.SignInFormBloc>(
+      () => _i8.SignInFormBloc(get<_i5.IAuthFacade>()));
   return get;
 }
 

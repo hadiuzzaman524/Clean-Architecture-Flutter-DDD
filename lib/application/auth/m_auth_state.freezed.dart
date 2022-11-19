@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'auth_state.dart';
+part of 'm_auth_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$MAuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -63,15 +63,16 @@ mixin _$AuthState {
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+abstract class $MAuthStateCopyWith<$Res> {
+  factory $MAuthStateCopyWith(
+          MAuthState value, $Res Function(MAuthState) then) =
+      _$MAuthStateCopyWithImpl<$Res, MAuthState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$MAuthStateCopyWithImpl<$Res, $Val extends MAuthState>
+    implements $MAuthStateCopyWith<$Res> {
+  _$MAuthStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -87,7 +88,7 @@ abstract class _$$InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$Initial>
+    extends _$MAuthStateCopyWithImpl<$Res, _$Initial>
     implements _$$InitialCopyWith<$Res> {
   __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
       : super(_value, _then);
@@ -100,7 +101,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'MAuthState.initial()';
   }
 
   @override
@@ -181,7 +182,7 @@ class _$Initial implements Initial {
   }
 }
 
-abstract class Initial implements AuthState {
+abstract class Initial implements MAuthState {
   const factory Initial() = _$Initial;
 }
 
@@ -194,7 +195,7 @@ abstract class _$$AuthenticatedCopyWith<$Res> {
 
 /// @nodoc
 class __$$AuthenticatedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$Authenticated>
+    extends _$MAuthStateCopyWithImpl<$Res, _$Authenticated>
     implements _$$AuthenticatedCopyWith<$Res> {
   __$$AuthenticatedCopyWithImpl(
       _$Authenticated _value, $Res Function(_$Authenticated) _then)
@@ -208,7 +209,7 @@ class _$Authenticated implements Authenticated {
 
   @override
   String toString() {
-    return 'AuthState.authenticated()';
+    return 'MAuthState.authenticated()';
   }
 
   @override
@@ -289,7 +290,7 @@ class _$Authenticated implements Authenticated {
   }
 }
 
-abstract class Authenticated implements AuthState {
+abstract class Authenticated implements MAuthState {
   const factory Authenticated() = _$Authenticated;
 }
 
@@ -302,7 +303,7 @@ abstract class _$$UnAuthenticatedCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnAuthenticatedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$UnAuthenticated>
+    extends _$MAuthStateCopyWithImpl<$Res, _$UnAuthenticated>
     implements _$$UnAuthenticatedCopyWith<$Res> {
   __$$UnAuthenticatedCopyWithImpl(
       _$UnAuthenticated _value, $Res Function(_$UnAuthenticated) _then)
@@ -316,7 +317,7 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   String toString() {
-    return 'AuthState.unAuthenticated()';
+    return 'MAuthState.unAuthenticated()';
   }
 
   @override
@@ -397,6 +398,6 @@ class _$UnAuthenticated implements UnAuthenticated {
   }
 }
 
-abstract class UnAuthenticated implements AuthState {
+abstract class UnAuthenticated implements MAuthState {
   const factory UnAuthenticated() = _$UnAuthenticated;
 }
