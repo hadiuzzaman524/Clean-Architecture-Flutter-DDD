@@ -1,3 +1,5 @@
+import 'package:clean_architecture/application/auth/auth_bloc.dart';
+import 'package:clean_architecture/application/auth/auth_event.dart';
 import 'package:clean_architecture/application/auth/sign_in/sign_in_form_bloc.dart';
 import 'package:clean_architecture/presentation/auth/sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,8 +24,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        create: (context) => getIt<SignInFormBloc>(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<SignInFormBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<AuthBloc>()
+              ..add(
+                const AuthEvent.authCheckedRequest(),
+              ),
+          ),
+        ],
         child: const SignInScreen(),
       ),
     );
