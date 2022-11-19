@@ -2,6 +2,7 @@ import 'package:clean_architecture/application/auth/auth_bloc.dart';
 import 'package:clean_architecture/application/auth/auth_event.dart';
 import 'package:clean_architecture/application/auth/sign_in/sign_in_form_bloc.dart';
 import 'package:clean_architecture/presentation/auth/sign_in.dart';
+import 'package:clean_architecture/presentation/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
               ),
           ),
         ],
-        child: const SignInScreen(),
+        child: const SplashScreen(),
       ),
     );
   }
