@@ -20,22 +20,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => getIt<MAuthCubit>()..checkAuthentication(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MAuthCubit>(
+          create: (context) => getIt()..checkAuthentication(),
 
-          ),
-          BlocProvider(
-            create: (context) => getIt<SignInFormBloc>(),
-          ),
+        ),
+        BlocProvider<SignInFormBloc>(
+          create: (context) => getIt(),
+        ),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider<MAuthCubit>(
+              create: (context) => getIt()..checkAuthentication(),
 
-        ],
-        child: const SplashScreen(),
+            ),
+            BlocProvider<SignInFormBloc>(
+              create: (context) => getIt(),
+            ),
+          ],
+          child: const SplashScreen(),
+        ),
       ),
     );
   }
